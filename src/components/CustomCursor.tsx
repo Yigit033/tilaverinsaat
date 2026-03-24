@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 import { motion } from "framer-motion";
 
-const CustomCursor = () => {
+const CustomCursor = forwardRef<HTMLDivElement>((_, ref) => {
   const [pos, setPos] = useState({ x: 0, y: 0 });
   const [hovering, setHovering] = useState(false);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Only show on non-touch devices
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
     if (isTouchDevice) return;
 
@@ -35,7 +34,7 @@ const CustomCursor = () => {
   if (!visible) return null;
 
   return (
-    <>
+    <div ref={ref}>
       <motion.div
         className="fixed top-0 left-0 z-[999] pointer-events-none mix-blend-difference rounded-full bg-white"
         animate={{
@@ -48,8 +47,10 @@ const CustomCursor = () => {
         transition={{ type: "spring", damping: 30, stiffness: 300, mass: 0.5 }}
       />
       <style>{`* { cursor: none !important; } @media (pointer: coarse) { * { cursor: auto !important; } }`}</style>
-    </>
+    </div>
   );
-};
+});
+
+CustomCursor.displayName = "CustomCursor";
 
 export default CustomCursor;
