@@ -1,12 +1,14 @@
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
+import { forwardRef } from "react";
 
-const WhatsAppButton = () => {
+const WhatsAppButton = forwardRef<HTMLAnchorElement>((_, ref) => {
   const phone = "902125550000";
   const message = encodeURIComponent("Merhaba, projeleriniz hakkında bilgi almak istiyorum.");
 
   return (
     <motion.a
+      ref={ref}
       href={`https://wa.me/${phone}?text=${message}`}
       target="_blank"
       rel="noopener noreferrer"
@@ -19,6 +21,8 @@ const WhatsAppButton = () => {
       <MessageCircle className="w-6 h-6 text-white" />
     </motion.a>
   );
-};
+});
+
+WhatsAppButton.displayName = "WhatsAppButton";
 
 export default WhatsAppButton;

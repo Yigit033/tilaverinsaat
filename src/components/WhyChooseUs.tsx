@@ -1,6 +1,7 @@
 import { Award, Clock, Eye, Gem } from "lucide-react";
 import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
+import { forwardRef } from "react";
 
 const reasons = [
   {
@@ -25,9 +26,9 @@ const reasons = [
   },
 ];
 
-const WhyChooseUs = () => {
+const WhyChooseUs = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <section id="why" className="py-28 md:py-40 bg-background">
+    <section ref={ref} id="why" className="py-28 md:py-40 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-20">
@@ -63,6 +64,8 @@ const WhyChooseUs = () => {
       </div>
     </section>
   );
-};
+});
+
+WhyChooseUs.displayName = "WhyChooseUs";
 
 export default WhyChooseUs;

@@ -1,13 +1,13 @@
+import { forwardRef } from "react";
 import ScrollReveal from "./ScrollReveal";
 import AnimatedCounter from "./AnimatedCounter";
 import { motion } from "framer-motion";
 
-const AboutSection = () => {
+const AboutSection = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <section id="about" className="py-28 md:py-40 bg-background">
+    <section ref={ref} id="about" className="py-28 md:py-40 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Story side */}
           <ScrollReveal>
             <div className="space-y-8">
               <div className="h-px w-16 bg-primary" />
@@ -31,14 +31,13 @@ const AboutSection = () => {
             </div>
           </ScrollReveal>
 
-          {/* Stats side */}
           <ScrollReveal delay={0.2}>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-6">
               {[
                 { target: 150, suffix: "+", label: "Tamamlanan Proje" },
                 { target: 25, suffix: "+", label: "Yıllık Deneyim" },
                 { target: 500, suffix: "K+", label: "m² İnşaat Alanı" },
-              ].map((stat, i) => (
+              ].map((stat) => (
                 <motion.div
                   key={stat.label}
                   className="border border-border p-8 text-center group hover:border-primary/50 transition-colors duration-500"
@@ -54,6 +53,8 @@ const AboutSection = () => {
       </div>
     </section>
   );
-};
+});
+
+AboutSection.displayName = "AboutSection";
 
 export default AboutSection;
