@@ -1,15 +1,14 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, forwardRef } from "react";
 
-const HeroSection = () => {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+const HeroSection = forwardRef<HTMLElement>((_, ref) => {
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start start", "end start"] });
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
   const textY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
-  // Mouse parallax
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   useEffect(() => {
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
@@ -25,8 +24,12 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section ref={ref} className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
-      {/* Background video with parallax */}
+    <section ref={(node) => {
+      // Handle both refs
+      (sectionRef as React.MutableRefObject<HTMLElement | null>).current = node;
+      if (typeof ref === "function") ref(node);
+      else if (ref) (ref as React.MutableRefObject<HTMLElement | null>).current = node;
+    }} className="relative h-screen flex items-center justify-center overflow-hidden bg-background">
       <motion.div className="absolute inset-0" style={{ y: bgY }}>
         <video
           autoPlay
@@ -41,13 +44,10 @@ const HeroSection = () => {
             type="video/mp4"
           />
         </video>
-        {/* Dark overlay */}
         <div className="absolute inset-0 bg-background/60" />
-        {/* Gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
       </motion.div>
 
-      {/* Animated subtle gradient accent */}
       <motion.div
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
@@ -60,7 +60,6 @@ const HeroSection = () => {
         transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.02] pointer-events-none"
         style={{
@@ -69,7 +68,6 @@ const HeroSection = () => {
         }}
       />
 
-      {/* Content with text parallax */}
       <motion.div
         className="relative z-10 text-center px-6 max-w-5xl mx-auto"
         style={{
@@ -96,7 +94,6 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* Headline with clip-path text reveal */}
         <div className="overflow-hidden">
           <motion.h1
             className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-[0.9] mb-6 text-foreground"
@@ -152,7 +149,6 @@ const HeroSection = () => {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
@@ -169,6 +165,8 @@ const HeroSection = () => {
       </motion.div>
     </section>
   );
-};
+});
+
+HeroSection.displayName = "HeroSection";
 
 export default HeroSection;

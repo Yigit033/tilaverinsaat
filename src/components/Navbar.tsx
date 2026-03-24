@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = forwardRef<HTMLElement>((_, ref) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
@@ -16,7 +16,6 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Track active section
   useEffect(() => {
     if (!isHome) return;
     const observer = new IntersectionObserver(
@@ -52,6 +51,7 @@ const Navbar = () => {
   return (
     <>
       <motion.nav
+        ref={ref}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
             ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg shadow-background/20"
@@ -80,7 +80,6 @@ const Navbar = () => {
                   className="relative text-sm uppercase tracking-[0.15em] text-muted-foreground hover:text-primary transition-colors duration-300 py-1"
                 >
                   {link.label}
-                  {/* Animated underline for active section */}
                   {activeSection === link.href && (
                     <motion.div
                       className="absolute -bottom-0.5 left-0 right-0 h-px bg-primary"
@@ -154,6 +153,8 @@ const Navbar = () => {
       </AnimatePresence>
     </>
   );
-};
+});
+
+Navbar.displayName = "Navbar";
 
 export default Navbar;

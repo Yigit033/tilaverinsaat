@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin } from "lucide-react";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import ScrollReveal from "./ScrollReveal";
 
 type Filter = "all" | "Tamamlandı" | "Devam Ediyor";
 
-const ProjectsSection = () => {
+const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
   const [filter, setFilter] = useState<Filter>("all");
 
   const filtered = filter === "all" ? projects : projects.filter((p) => p.status === filter);
@@ -18,21 +18,20 @@ const ProjectsSection = () => {
     { label: "Devam Eden", value: "Devam Ediyor" },
   ];
 
-  // Bento grid sizing
   const getGridClass = (index: number) => {
     const patterns = [
-      "md:col-span-2 md:row-span-2", // large
-      "md:col-span-1 md:row-span-1", // small
-      "md:col-span-1 md:row-span-1", // small
-      "md:col-span-1 md:row-span-2", // tall
-      "md:col-span-1 md:row-span-1", // small
-      "md:col-span-1 md:row-span-1", // small
+      "md:col-span-2 md:row-span-2",
+      "md:col-span-1 md:row-span-1",
+      "md:col-span-1 md:row-span-1",
+      "md:col-span-1 md:row-span-2",
+      "md:col-span-1 md:row-span-1",
+      "md:col-span-1 md:row-span-1",
     ];
     return patterns[index % patterns.length];
   };
 
   return (
-    <section id="projects" className="py-24 md:py-32 bg-secondary">
+    <section ref={ref} id="projects" className="py-24 md:py-32 bg-secondary">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -85,10 +84,7 @@ const ProjectsSection = () => {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     loading="lazy"
                   />
-                  {/* Overlay on hover */}
                   <div className="absolute inset-0 bg-background/0 group-hover:bg-background/70 transition-all duration-500" />
-
-                  {/* Text slide up on hover */}
                   <div className="absolute inset-0 flex flex-col justify-end p-6">
                     <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                       <h3 className="text-lg font-bold text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
@@ -103,8 +99,6 @@ const ProjectsSection = () => {
                       </span>
                     </div>
                   </div>
-
-                  {/* Status badge */}
                   <div className="absolute top-4 right-4">
                     <span
                       className={`px-3 py-1 text-xs uppercase tracking-wider font-semibold ${
@@ -124,6 +118,8 @@ const ProjectsSection = () => {
       </div>
     </section>
   );
-};
+});
+
+ProjectsSection.displayName = "ProjectsSection";
 
 export default ProjectsSection;

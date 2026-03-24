@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useState, forwardRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { testimonials, partners } from "@/data/projects";
 import ScrollReveal from "./ScrollReveal";
 
-const TestimonialsSection = () => {
+const TestimonialsSection = forwardRef<HTMLElement>((_, ref) => {
   const [current, setCurrent] = useState(0);
 
   const next = () => setCurrent((c) => (c + 1) % testimonials.length);
   const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="py-24 md:py-32 bg-background">
+    <section ref={ref} className="py-24 md:py-32 bg-background">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <ScrollReveal>
           <div className="text-center mb-16">
@@ -28,7 +28,6 @@ const TestimonialsSection = () => {
         <ScrollReveal>
           <div className="max-w-3xl mx-auto text-center relative">
             <Quote className="w-10 h-10 text-primary/20 mx-auto mb-8" />
-
             <div className="min-h-[200px] flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -66,7 +65,6 @@ const TestimonialsSection = () => {
           </div>
         </ScrollReveal>
 
-        {/* Partner logos */}
         <ScrollReveal delay={0.2}>
           <div className="mt-20 border-t border-border pt-12">
             <p className="text-center text-xs uppercase tracking-[0.3em] text-muted-foreground mb-8">
@@ -87,6 +85,8 @@ const TestimonialsSection = () => {
       </div>
     </section>
   );
-};
+});
+
+TestimonialsSection.displayName = "TestimonialsSection";
 
 export default TestimonialsSection;

@@ -1,9 +1,9 @@
 import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
-import { Link } from "react-router-dom";
+import { forwardRef } from "react";
 
-const Footer = () => {
+const Footer = forwardRef<HTMLElement>((_, ref) => {
   return (
-    <footer className="bg-background border-t border-border py-16">
+    <footer ref={ref} className="bg-background border-t border-border py-16">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
@@ -59,6 +59,8 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
+
+Footer.displayName = "Footer";
 
 export default Footer;
