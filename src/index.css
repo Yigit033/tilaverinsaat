@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -18,7 +18,7 @@
     --primary: 37 40% 60%;
     --primary-foreground: 0 0% 7%;
 
-    --secondary: 0 0% 17%;
+    --secondary: 0 0% 14%;
     --secondary-foreground: 40 10% 95%;
 
     --muted: 0 0% 17%;
@@ -30,11 +30,11 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 20%;
+    --border: 0 0% 18%;
     --input: 0 0% 20%;
     --ring: 37 40% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0rem;
 
     --gold: 37 40% 60%;
     --gold-light: 37 50% 75%;
@@ -50,12 +50,18 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
     font-family: 'Inter', sans-serif;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Better text rendering */
+  h1, h2, h3, h4, h5, h6 {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
@@ -77,5 +83,17 @@
   }
   .bg-charcoal-light {
     background-color: hsl(var(--charcoal-light));
+  }
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* Hide scrollbar for horizontal scroll galleries */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
   }
 }
