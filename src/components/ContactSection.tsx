@@ -1,7 +1,38 @@
 import { useState } from "react";
 import { Send } from "lucide-react";
+import { motion } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 import { toast } from "sonner";
+
+const FloatingInput = ({
+  label,
+  type = "text",
+  value,
+  onChange,
+  maxLength,
+  required,
+}: {
+  label: string;
+  type?: string;
+  value: string;
+  onChange: (val: string) => void;
+  maxLength?: number;
+  required?: boolean;
+}) => (
+  <div className="relative">
+    <input
+      type={type}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      maxLength={maxLength}
+      placeholder=" "
+      className="peer w-full px-4 pt-5 pb-2 bg-background border border-border text-foreground text-sm focus:outline-none focus:border-primary transition-colors duration-300"
+    />
+    <label className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground text-sm transition-all duration-300 pointer-events-none peer-focus:top-2.5 peer-focus:translate-y-0 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:top-2.5 peer-[:not(:placeholder-shown)]:translate-y-0 peer-[:not(:placeholder-shown)]:text-xs">
+      {label}{required && " *"}
+    </label>
+  </div>
+);
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
@@ -26,7 +57,7 @@ const ContactSection = () => {
               <span className="text-xs uppercase tracking-[0.3em] text-primary font-medium">
                 İletişim
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground leading-tight">
+              <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground leading-tight tracking-tight">
                 Projenizi birlikte{" "}
                 <span className="text-primary">hayata geçirelim</span>
               </h2>
@@ -56,49 +87,33 @@ const ContactSection = () => {
 
           <ScrollReveal delay={0.2}>
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <input
-                  type="text"
-                  placeholder="Ad Soyad *"
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  maxLength={100}
-                  className="w-full px-4 py-3.5 bg-background border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary transition-colors"
-                />
-              </div>
+              <FloatingInput label="Ad Soyad" value={form.name} onChange={(v) => setForm({ ...form, name: v })} maxLength={100} required />
               <div className="grid sm:grid-cols-2 gap-5">
-                <input
-                  type="email"
-                  placeholder="E-posta *"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  maxLength={255}
-                  className="w-full px-4 py-3.5 bg-background border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary transition-colors"
-                />
-                <input
-                  type="tel"
-                  placeholder="Telefon"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  maxLength={20}
-                  className="w-full px-4 py-3.5 bg-background border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary transition-colors"
-                />
+                <FloatingInput label="E-posta" type="email" value={form.email} onChange={(v) => setForm({ ...form, email: v })} maxLength={255} required />
+                <FloatingInput label="Telefon" type="tel" value={form.phone} onChange={(v) => setForm({ ...form, phone: v })} maxLength={20} />
               </div>
-              <textarea
-                placeholder="Mesajınız *"
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                rows={5}
-                maxLength={1000}
-                className="w-full px-4 py-3.5 bg-background border border-border text-foreground placeholder:text-muted-foreground text-sm focus:outline-none focus:border-primary transition-colors resize-none"
-              />
-              <button
+              <div className="relative">
+                <textarea
+                  placeholder=" "
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  rows={5}
+                  maxLength={1000}
+                  className="peer w-full px-4 pt-5 pb-2 bg-background border border-border text-foreground text-sm focus:outline-none focus:border-primary transition-colors duration-300 resize-none"
+                />
+                <label className="absolute left-4 top-4 text-muted-foreground text-sm transition-all duration-300 pointer-events-none peer-focus:top-1.5 peer-focus:text-xs peer-focus:text-primary peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-xs">
+                  Mesajınız *
+                </label>
+              </div>
+              <motion.button
                 type="submit"
-                className="w-full px-8 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm hover:bg-primary/90 transition-all duration-300 flex items-center justify-center gap-2 hover:scale-[1.02]"
+                className="w-full px-8 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
               >
                 <Send className="w-4 h-4" />
                 Mesaj Gönder
-              </button>
+              </motion.button>
             </form>
           </ScrollReveal>
         </div>

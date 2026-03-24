@@ -8,21 +8,24 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import PageTransition from "@/components/PageTransition";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <ProjectsSection />
-      <WhyChooseUs />
-      <ProcessTimeline />
-      <TestimonialsSection />
-      <ContactSection />
-      <Footer />
-      <WhatsAppButton />
-    </div>
+    <PageTransition>
+      <div className="min-h-screen bg-background">
+        <Navbar />
+        <HeroSection />
+        <AboutSection />
+        <ProjectsSection />
+        <WhyChooseUs />
+        <ProcessTimeline />
+        <TestimonialsSection />
+        <ContactSection />
+        <Footer />
+        <WhatsAppButton />
+      </div>
+    </PageTransition>
   );
 };
 
