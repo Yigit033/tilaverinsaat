@@ -78,6 +78,7 @@ const ProjectDetail = () => {
           <div className="grid lg:grid-cols-[1fr_320px] gap-12 lg:gap-16">
             {/* Main content */}
             <motion.div
+              className="min-w-0"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.7 }}
