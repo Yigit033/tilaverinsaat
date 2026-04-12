@@ -26,6 +26,7 @@ const ProjectDetail = () => {
     { icon: MapPin, label: "Konum", value: project.location },
     { icon: Calendar, label: "Teslim", value: project.completionDate },
     { icon: Maximize, label: "Alan", value: project.area },
+    { icon: ArrowLeft, label: "Kategori", value: project.category }, // Temporary icon, will check for better one
   ];
 
   return (

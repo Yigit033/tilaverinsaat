@@ -78,24 +78,32 @@ const ProjectsSection = forwardRef<HTMLElement>((_, ref) => {
                 className={getGridClass(i)}
               >
                 <Link to={`/project/${project.id}`} className="group block relative h-full overflow-hidden">
+                  <div className="absolute inset-0 bg-secondary/10 animate-pulse" />
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    loading="lazy"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    onError={(e) => {
+                      (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800";
+                    }}
                   />
-                  <div className="absolute inset-0 bg-background/0 group-hover:bg-background/70 transition-all duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute inset-0 flex flex-col justify-end p-6">
                     <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                      <h3 className="text-lg font-bold text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-[10px] uppercase tracking-[0.2em] text-primary/80 font-bold">
+                          {project.category}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-bold text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
                         {project.title}
                       </h3>
                       <div className="flex items-center gap-1.5 mt-2 text-muted-foreground text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-150">
                         <MapPin className="w-3.5 h-3.5" />
                         {project.location}
                       </div>
-                      <span className="inline-block mt-3 text-xs text-primary uppercase tracking-wider font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200">
-                        Detaylar →
+                      <span className="inline-block mt-4 text-xs text-primary uppercase tracking-wider font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-200 border-b border-primary/30 pb-0.5">
+                        Proje Detayı →
                       </span>
                     </div>
                   </div>
