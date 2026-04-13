@@ -36,15 +36,46 @@ const FloatingInput = ({
 
 const ContactSection = forwardRef<HTMLElement>((_, ref) => {
   const [form, setForm] = useState({ name: "", email: "", phone: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       toast.error("Lütfen zorunlu alanları doldurun.");
       return;
     }
-    toast.success("Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.");
-    setForm({ name: "", email: "", phone: "", message: "" });
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: "eec62b36-9b36-4727-9464-89b8e7de7eed",
+          from_name: form.name,
+          email: form.email,
+          phone: form.phone || "Belirtilmedi",
+          message: form.message,
+          subject: "Tilaver Yapı Websitesi - Yeni İletişim Mesajı",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        toast.success("Mesajınız başarıyla gönderildi! En kısa sürede sizinle iletişime geçeceğiz.");
+        setForm({ name: "", email: "", phone: "", message: "" });
+      } else {
+        toast.error("Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.");
+      }
+    } catch (error) {
+      toast.error("Bağlantınızı kontrol edip tekrar deneyin.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -70,7 +101,7 @@ const ContactSection = forwardRef<HTMLElement>((_, ref) => {
                 <div className="flex items-start gap-4">
                   <div className="text-primary text-sm font-bold uppercase tracking-wider min-w-[60px]">Adres</div>
                   <span className="text-muted-foreground text-sm font-light">
-                    Levent Mah. Büyükdere Cad. No:185, Şişli / İstanbul
+                    İstanbul, Eyüpsultan, Akşemsettin Mah., Seyran Sok., 31A
                   </span>
                 </div>
                 <div className="flex items-start gap-4">
@@ -110,12 +141,13 @@ const ContactSection = forwardRef<HTMLElement>((_, ref) => {
               </div>
               <motion.button
                 type="submit"
-                className="w-full px-8 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                disabled={isSubmitting}
+                className="w-full px-8 py-4 bg-primary text-primary-foreground font-semibold uppercase tracking-wider text-sm transition-all duration-300 flex items-center justify-center gap-2 relative overflow-hidden disabled:opacity-70 disabled:cursor-not-allowed"
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
               >
-                <Send className="w-4 h-4" />
-                Mesaj Gönder
+                <Send className={`w-4 h-4 ${isSubmitting ? "animate-pulse" : ""}`} />
+                {isSubmitting ? "Gönderiliyor..." : "Mesaj Gönder"}
               </motion.button>
             </form>
           </ScrollReveal>

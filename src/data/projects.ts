@@ -47,9 +47,6 @@ export const projects: Project[] = [
       "/assets/projects/golden-tower/gallery/1.webp",
       "/assets/projects/golden-tower/gallery/2.webp",
       "/assets/projects/golden-tower/gallery/3.webp",
-      "/assets/projects/golden-tower/gallery/4.webp",
-      "/assets/projects/golden-tower/gallery/5.webp",
-      "/assets/projects/golden-tower/gallery/6.webp",
     ],
     featured: true,
   },
@@ -66,6 +63,8 @@ export const projects: Project[] = [
     gallery: [
       "/assets/projects/park-villa/gallery/1.webp",
       "/assets/projects/park-villa/gallery/2.webp",
+      "/assets/projects/park-villa/gallery/3.webp",
+      "/assets/projects/park-villa/gallery/4.webp",
     ],
   },
   {
@@ -81,6 +80,8 @@ export const projects: Project[] = [
     gallery: [
       "/assets/projects/maritime-plaza/gallery/1.webp",
       "/assets/projects/maritime-plaza/gallery/2.webp",
+      "/assets/projects/maritime-plaza/gallery/3.webp",
+      "/assets/projects/maritime-plaza/gallery/4.webp",
     ],
   },
   {
