@@ -32,7 +32,7 @@ const WhyChooseUs = forwardRef<HTMLElement>((_, ref) => {
               Farkımız
             </span>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground mt-4 tracking-tight">
-              Neden <span className="text-primary font-display italic">Tilaver</span>?
+              Neden <span className="text-primary font-display italic">Tilaver Yapı</span>?
             </h2>
           </div>
         </ScrollReveal>

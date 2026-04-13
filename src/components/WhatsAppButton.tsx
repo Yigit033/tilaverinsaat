@@ -3,7 +3,7 @@ import { MessageCircle } from "lucide-react";
 import { forwardRef } from "react";
 
 const WhatsAppButton = forwardRef<HTMLAnchorElement>((_, ref) => {
-  const phone = "902125550000";
+  const phone = "905327641835";
   const message = encodeURIComponent("Merhaba, projeleriniz hakkında bilgi almak istiyorum.");
 
   return (
