@@ -89,7 +89,7 @@ const HeroSection = forwardRef<HTMLElement>((_, ref) => {
               transition={{ duration: 1, delay: 0.5 }}
             />
             <span className="text-xs md:text-sm uppercase tracking-[0.3em] text-primary font-medium">
-              Tilaver İnşaat
+              TİLAVER YAPI
             </span>
           </div>
         </motion.div>
@@ -101,9 +101,9 @@ const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             animate={{ y: 0 }}
             transition={{ duration: 1, delay: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            Geleceği{" "}
-            <span className="text-primary">İnşa</span>{" "}
-            Ediyoruz
+            Kendi{" "}
+            <span className="text-primary">Yuvamız</span>{" "}
+            Gibi
           </motion.h1>
         </div>
 
@@ -114,7 +114,7 @@ const HeroSection = forwardRef<HTMLElement>((_, ref) => {
             animate={{ y: 0 }}
             transition={{ duration: 0.8, delay: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
           >
-            Modern, güvenilir ve sürdürülebilir projeler
+            39 Yıllık Geçmiş, 29 Yıllık İnşa. 1987’de başlayan inşaat serüvenimize inşaatın temelinden başladık. 29 yıldır kendi adımızla, kendi evimize verdiğimiz aynı özenle projelerimizi inşa ediyoruz. Her projemizde aynı özen ve titizliği sürdürüyoruz.
           </motion.p>
         </div>
 

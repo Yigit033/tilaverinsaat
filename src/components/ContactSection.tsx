@@ -75,11 +75,14 @@ const ContactSection = forwardRef<HTMLElement>((_, ref) => {
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="text-primary text-sm font-bold uppercase tracking-wider min-w-[60px]">Telefon</div>
-                  <span className="text-muted-foreground text-sm font-light">+90 212 555 00 00</span>
+                  <div className="flex flex-col text-muted-foreground text-sm font-light gap-1">
+                    <span>+90 532 764 18 35</span>
+                    <span>+90 535 639 18 98</span>
+                  </div>
                 </div>
                 <div className="flex items-start gap-4">
                   <div className="text-primary text-sm font-bold uppercase tracking-wider min-w-[60px]">E-posta</div>
-                  <span className="text-muted-foreground text-sm font-light">info@tilaver.com.tr</span>
+                  <span className="text-muted-foreground text-sm font-light">tilaverinsaat@hotmail.com</span>
                 </div>
               </div>
             </div>

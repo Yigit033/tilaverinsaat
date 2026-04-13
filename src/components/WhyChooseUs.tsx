@@ -5,11 +5,6 @@ import { forwardRef } from "react";
 
 const reasons = [
   {
-    icon: Award,
-    title: "Mühendislik Mükemmelliği",
-    desc: "Alanında uzman mühendis kadromuz, en karmaşık projeleri bile kusursuz bir şekilde hayata geçirir.",
-  },
-  {
     icon: Clock,
     title: "Zamanında Teslimat",
     desc: "Projelerimizi belirlenen takvim dahilinde, hiçbir kalite standardından ödün vermeden teslim ediyoruz.",
@@ -42,7 +37,7 @@ const WhyChooseUs = forwardRef<HTMLElement>((_, ref) => {
           </div>
         </ScrollReveal>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {reasons.map((r, i) => (
             <ScrollReveal key={r.title} delay={i * 0.1}>
               <motion.div

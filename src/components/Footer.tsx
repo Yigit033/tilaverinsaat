@@ -9,10 +9,10 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <span className="text-xl font-black text-foreground">TİLAVER</span>
-              <span className="text-xl font-light tracking-widest text-primary">İNŞAAT</span>
+              <span className="text-xl font-light tracking-widest text-primary">YAPI</span>
             </div>
             <p className="text-sm text-muted-foreground font-light leading-relaxed">
-              Geleceğin yaşam alanlarını bugünden inşa ediyoruz. 25 yıllık deneyim ve güvenle.
+              29 yıllık deneyim ve güvenle kendi evimize verdiğimiz özenle.
             </p>
           </div>
 
@@ -53,7 +53,7 @@ const Footer = forwardRef<HTMLElement>((_, ref) => {
 
         <div className="border-t border-border pt-8 text-center">
           <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} Tilaver İnşaat. Tüm hakları saklıdır.
+            © {new Date().getFullYear()} TİLAVER YAPI. Tüm hakları saklıdır.
           </p>
         </div>
       </div>

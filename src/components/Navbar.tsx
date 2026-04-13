@@ -67,7 +67,7 @@ const Navbar = forwardRef<HTMLElement>((_, ref) => {
               TİLAVER
             </span>
             <span className="text-xl md:text-2xl font-light tracking-widest text-primary">
-              İNŞAAT
+              YAPI
             </span>
           </Link>
 

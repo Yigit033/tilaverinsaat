@@ -15,40 +15,18 @@ const AboutSection = forwardRef<HTMLElement>((_, ref) => {
                 Hakkımızda
               </span>
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-foreground leading-[1.05] tracking-tight">
-                25 Yıllık Deneyim,{" "}
-                <span className="text-primary font-display italic">Güvenilir</span> Gelecek
+                39 Yıllık Geçmiş,{" "}
+                <span className="text-primary font-display italic">29 Yıllık İnşa</span>
               </h2>
               <p className="text-muted-foreground leading-relaxed text-base md:text-lg font-light">
-                Tilaver İnşaat, 1999 yılından bu yana Türkiye'nin dört bir yanında konut, ticari
-                ve altyapı projelerine imza atmaktadır. Mühendislik mükemmelliği ve müşteri
-                memnuniyetini temel alan yaklaşımımızla, sektörün en güvenilir isimlerinden biri
-                olmanın gururunu yaşıyoruz.
+                TİLAVER YAPI olarak, 1987 yılında başlayan inşaat serüvenimize sektörün en temelinden, çekirdekten yetişerek adım attık. Tam 39 yıllık bu derin köklü geçmişin üzerine, son 29 yıldır kendi adımızla projelere imza atıyoruz.
               </p>
               <p className="text-muted-foreground leading-relaxed text-base md:text-lg font-light">
-                Her projemizde sürdürülebilirlik ilkesini benimsiyor, en yüksek kalite standartlarını
-                uyguluyoruz. Geleceğin yaşam alanlarını bugünden inşa ediyoruz.
+                İnşa ettiğimiz her yapıda, kendi yuvamıza gösterdiğimiz özen ve titizliği standart olarak benimsiyoruz. Her projemizde bu vizyonu koruyarak, yalnızca binalar değil, güven içinde yaşanacak yuvalar inşa etmeyi sürdürüyoruz.
               </p>
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 lg:gap-6">
-              {[
-                { target: 150, suffix: "+", label: "Tamamlanan Proje" },
-                { target: 25, suffix: "+", label: "Yıllık Deneyim" },
-                { target: 500, suffix: "K+", label: "m² İnşaat Alanı" },
-              ].map((stat) => (
-                <motion.div
-                  key={stat.label}
-                  className="border border-border p-8 text-center group hover:border-primary/50 transition-colors duration-500"
-                  whileHover={{ y: -4 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <AnimatedCounter target={stat.target} suffix={stat.suffix} label={stat.label} />
-                </motion.div>
-              ))}
-            </div>
-          </ScrollReveal>
         </div>
       </div>
     </section>
